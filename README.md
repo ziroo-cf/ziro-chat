@@ -1,1 +1,1 @@
-# ziro-chat.github.io
+# ziroo-cf.github.io/ziro-chat/
