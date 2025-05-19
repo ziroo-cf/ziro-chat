@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Ziro Chat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8147fc;
+            --primary-dark: #6b3dc7;
+            --secondary: #ff4352;
+            --dark-bg: #0f0e17;
+            --light-bg: #f8f8f8;
+            --text-light: #ffffff;
+            --text-dark: #2d3748;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+        }
+
+        /* Animated background */
+        #bg-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .gradient-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1f1c2c, #928dab);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .floating-bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-100px) rotate(180deg); }
+        }
+
+        /* 404 Container */
+        .error-container {
+            max-width: 500px;
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 14, 23, 0.8);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.5s ease;
+        }
+
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .error-code {
+            font-family: 'Poppins', sans-serif;
+            font-size: 6rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        .error-code::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .error-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        .error-description {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .error-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 24px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(129, 71, 252, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Animation for the astronaut */
+        .astronaut {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            animation: floatAstronaut 6s ease-in-out infinite;
+        }
+
+        @keyframes floatAstronaut {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            .error-title {
+                font-size: 1.75rem;
+            }
+            
+            .error-description {
+                font-size: 1rem;
+            }
+            
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body class="dark">
+    <!-- Animated background -->
+    <div id="bg-wrap">
+        <div class="gradient-bg"></div>
+        <div class="floating-bubbles">
+            <div class="bubble" style="width: 200px; height: 200px; top: 10%; left: 5%; animation-delay: 0s;"></div>
+            <div class="bubble" style="width: 150px; height: 150px; top: 70%; left: 80%; animation-delay: 2s;"></div>
+            <div class="bubble" style="width: 100px; height: 100px; top: 30%; left: 60%; animation-delay: 4s;"></div>
+            <div class="bubble" style="width: 120px; height: 120px; top: 80%; left: 20%; animation-delay: 6s;"></div>
+        </div>
+    </div>
+
+    <!-- 404 Content -->
+    <div class="error-container">
+        <div class="astronaut">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="90" fill="#8147fc" opacity="0.1" />
+                <path d="M100,50 C120,30 140,20 160,30 C180,40 190,60 180,80 C170,100 150,110 130,100 C110,90 90,70 100,50" fill="#fff" />
+                <circle cx="120" cy="70" r="10" fill="#0f0e17" />
+                <circle cx="80" cy="70" r="10" fill="#0f0e17" />
+                <path d="M90,90 Q100,110 110,90" stroke="#0f0e17" stroke-width="2" fill="none" />
+                <circle cx="100" cy="100" r="60" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="5,5" />
+                <path d="M100,40 L100,20 M100,180 L100,160 M20,100 L40,100 M160,100 L180,100" stroke="#fff" stroke-width="2" />
+            </svg>
+        </div>
+        
+        <h1 class="error-code">404</h1>
+        <h2 class="error-title">Houston, we have a problem!</h2>
+        <p class="error-description">
+            The page you're looking for seems to have drifted off into the cosmos. 
+            Maybe it's floating among the stars or got lost in a black hole.
+        </p>
+        
+        <div class="error-actions">
+            <a href="/" class="btn btn-primary">
+                <i class="fas fa-home"></i>
+                Return Home
+            </a>
+            <a href="mailto:#" class="btn btn-secondary">
+                <i class="fas fa-envelope"></i>
+                Contact Support
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Add some fun animation to the astronaut on hover
+        const astronaut = document.querySelector('.astronaut svg');
+        astronaut.addEventListener('mouseenter', () => {
+            astronaut.style.transform = 'rotate(10deg) scale(1.1)';
+            astronaut.style.transition = 'transform 0.3s ease';
+        });
+        
+        astronaut.addEventListener('mouseleave', () => {
+            astronaut.style.transform = '';
+        });
+    </script>
+</body>
+</html>
